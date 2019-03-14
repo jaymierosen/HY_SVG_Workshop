@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Loading Icon</title>
+	<style>
+		body {background: #f5f5f5; color: #333; } main {height: 100vh; display: flex; justify-content: center; align-items: center; } 
+
+		.loading-icon {
+			margin-top: -25px; /* nudge it up a bit so it's "optically vertically centered" */
+			width: 150px;
+			height: 150px;
+		}
+
+		/* 	
+		5) 	Write @keyframes for the line animation using stroke-dashoffset.
+
+		6) 	Use the stroke-dasharray and stroke-dashoffset CSS properties to animate the letter path(s). 
+
+		7) 	Add some easing to the line animation.
+		*/
+
+	  /*path {
+	    stroke-dasharray: 120;
+	    stroke-dashoffset: 120;
+	    animation: dash 2s infinite;
+	    animation-timing-function: ease-in-out;
+	  }
+
+	  @keyframes dash {
+	  	70%, 100% {
+	  		stroke-dashoffset: 0;
+	  	}
+	  }*/
+
+		
+		/* calculate the diameter of the circle using radius (60) = 377 */
+
+		@keyframes circleDash {
+		  0% {
+		    stroke-dasharray: 0, 377;
+		    stroke-dashoffset: 0;
+		  }
+		  100% {
+		    stroke-dasharray: 377, 377;
+		    stroke-dashoffset: -377;
+		  }
+		}
+
+		@keyframes rotate {
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		circle {
+		  stroke-dasharray: 377; 
+		  stroke-dashoffset: 0;
+		  animation:  circleDash 2s linear infinite,
+		  						rotate 6s linear infinite;
+		}
+
+	</style>
+</head>
+<body>
+	<main>
+			<div class="loading-icon">
+				<!-- 
+				1) 	Choose an SVG from the assets folder. 
+						Copy and paste it inline before closing </div>. 
+						Remove the height and width attributes so that it is responsive to the container: div.loading-icon.
+
+				2) 	Add a group element after the last path and before to the the closing </svg> tag. 
+
+				3) 	Inside the group, draw (code) a <circle> with a radius of 60. 
+						The default values of cx and cy are 0 (which is what we need) so you don't need to include them. 
+						Give the circle a transparent background and a border width of 2.
+
+				4) 	Add a transform attribute to the group and translate it to the center of the viewBox. 
+				-->
+
+				<svg viewBox="0 0 150 150">
+		        <path fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M67 60s-1.5-8.3 7.2-8.3c14.5 0-13.2 46.6-26.6 46.6-8.2 0-7.5-11.4 1.9-11.4"/>
+		        <path fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M77 63.1s7.3-11.4 17.1-11.4S95.6 74 72.3 74c26.7 0-7.1 24.3 8 24.3 7.9 0 14-11.8 14-11.8"/>
+				    <g transform="translate(75 75)">
+				    	<circle r="60" fill="none" stroke-width="2" stroke="#231f20" stroke-linecap="round"/>
+				    </g>
+				</svg>
+				
+
+			</div>
+	</main>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		/*  
+		6)	Bonus: use vanilla JS and/or jQuery to accurately calculate and set the length of each path
+		*/
+		// $(function() {
+		// 	document.querySelectorAll('svg path').forEach(function(path, i) {
+		// 		var length = path.getTotalLength();
+
+		// 		// set the length of each path using the .css method
+		// 		$(path).css({
+		// 	   	"stroke-dasharray": length,
+		// 	   	"stroke-dashoffset": length
+		// 	   });
+
+		// 	});
+		// });
+	</script>
+</body>
+</html>

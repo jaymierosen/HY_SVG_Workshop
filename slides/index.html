@@ -1,0 +1,2194 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+		<link rel="stylesheet" href="lib/css/custom-highlight.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background-color="#002844">
+					<h1>SVG Animations</h1>
+				</section>
+
+				<section>
+					<h2>I'm Susan!</h2>
+					<p>Designer / Front-End Developer</p>
+					<p><a href="https://twitter.com/HelloSusan_code">@HelloSusan_code</a></p>
+					<p><a href="https://codepen.io/susan8098">Codepen</a></p>
+					<p><a href="https://hellosusan.io">https://hellosusan.io</a></p>
+					<p><a href="https://www.instagram.com/our.charlie/">Very cute pics of my dog!</a></p>
+					<p style="font-size: 16px; margin-top: 40px;">Disclaimer: A lot of materials that I am presenting today are taken from the previous instructor of this workshop <a href="http://natcooper.com/">Nat Cooper</a>. Nat is a super talented designer, and has been working on SVG animations for years now. Check out her fun SVG animations on her <a href="https://codepen.io/natacoops/">Codepen</a>. She is also the creator of the <a href="http://creativecoding.club">Creative Coding Club</a>!</p>
+				</section>
+
+				<section>
+					<h2>Intros!</h2>
+					<p>Your Name</p>
+					<p>Your background / experience</p>
+					<p>What are you looking to learn?</p>
+				</section>
+
+				<section id="Agenda">
+					<h2>Agenda</h2>
+					<ul>
+						<li><a href="#SVG-Basics">SVG Basics</a></li>
+						<li><a href="#Anatomy-of-SVG">Anatomy of SVG</a></li>
+						<li><a href="#Tools-and-Optimization">Tools & Optimization</a></li>
+						<li><a href="#CSS-with-SVG">CSS & SVG</a></li>
+						<li><a href="#CSS-Animation">CSS Animation</a></li>
+						<li><a href="#Exercise-1">Exercise 1 - Applying CSS Animation</a></li>
+						<li><a href="#SVG-Line-Animation">Exercise 2 - SVG Line Animation</a></li>
+						<li><a href="#Greensock-Animation-Library">Greensock Animation Library</a></li>
+						<li><a href="#Animated-Illustration">Exercise 3 - Animated Illustration</a></li>
+					</ul>
+					<p><a href="#Resources">Resources</a></p>
+					<p><a href="#Bonus-Exercises">Bonus Exercises</a></p>
+				</section>
+
+				<section>
+					<h4>What you'll need today...</h4>
+					<ul>
+						<li><strong>Wifi:</strong> Hacker You</li>
+						<li><strong>Password:</strong> Thisishackeryou</li>
+						<li>Slides: </li>
+						<li>Text Editor, I will be using Sublime Text</li>
+						<li>Chrome Browser</li>
+					</ul>
+				</section>
+
+				<section id="SVG-Basics" data-background-color="#002844">
+					<h1>SVG Basics</h1>
+				</section>
+
+				<section>
+					<h2>What is SVG?</h2>
+					<ul>
+						<li>Scalable Vector Graphics</li>
+						<li>XML Format</li>
+						<li>A plain text file that describes lines, curves, shapes, colours and text</li>
+						<li>Works with HTML, CSS and JavaScript</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="images/vector-vs-raster.png" alt="raster image vs vector image">
+				</section>
+
+				<section>
+					<h2>Pros</h2>
+					<ul>
+						<li>Flexible</li>
+						<li>Performant</li>
+						<li>Accessible</li>
+						<li>Modern Web Browser Support</li>
+						<li>Scalable & Responsive</li>
+						<li>Supports objects, images and texts</li>
+						<li>Interactive, endless possibilities!</li>
+					</ul>
+				</section>
+
+				<section>
+					Examples of how SVG are being used...
+				</section>
+
+				<section id="Anatomy-of-SVG" data-background-color="#002844">
+					<h2>Anatomy of SVG</h2>
+					<h4><a href="#Agenda">Back to Agenda</a></h4>
+				</section>
+
+				<section>
+					<h3>Something like this...</h3>
+					<div data-markdown>
+						<script type="text/template">
+							```
+							<svg>
+								<defs>
+								<filter>
+
+								<g>
+
+								<line>
+								<rect>
+								<circle>
+								<elipse>
+								<path>
+								<polygon>
+							```
+						</script>
+					</div>
+				</section>
+
+				<section>
+					<h3>SVG Element</h3>
+					<div data-markdown>
+						<script type="text/template">
+							```html
+							<svg 
+								version="1.1" 
+								xmlns="http://www.w3.org/2000/svg" 
+								x="0px" 
+								y="0px" 
+								width="1024"
+								height="768"
+								viewBox="0 0 1024 768">
+
+									...
+
+							</svg>
+							```
+						</script>
+					</div>
+					<p>Keep in mind that sometimes SVG that are generated from different sources come created with 'extra' attributes that are unnecessary, such as <code class="code">version</code></p>
+					<p>You can always reference the doc: <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg">MDN Reference</a></p>
+				</section>
+
+				<section>
+					<p>The <code class="code">xlmns</code> attribute is the declaration of the SVG namespace.</p>
+					<div data-markdown>
+						<script type="text/template">
+							```html
+							<svg xmlns="http://www.w3.org/2000/svg">
+							```
+						</script>
+					</div>
+					<p>An SVG in its own file should be treated as XML. <br><strong>Web browsers will not render (draw) the SVG image without the namespace.</strong></p>
+					<p>An SVG file that's placed inside of an HTML file does not need this declaration.</p>
+					<p>Try: Have a go at deleting the <code>xlmns</code> atrributes and see what happens.</p>
+				</section>
+
+				<section>
+					<p>The <code class="code">x</code> and <code class="code">y</code> attributes are the starting coordinates of the SVG</p>
+					<div data-markdown>
+						<script type="text/template">
+							```html
+							<svg x="0" y="0">
+							```
+						</script>
+					</div>
+					<p>The <code class="code">width</code> and <code class="code">height</code> attributes are designated here as well to set the width and height of the SVG.</p>
+					<div data-markdown>
+						<script type="text/template">
+							```html
+							<svg width="1024" height="768">
+							```
+						</script>
+					</div>
+					<p>It generally corresponds to the values in <code class="code">viewBox</code> attribute</p>
+				</section>
+
+				<section>
+					<p>The <code class="code">viewBox</code> attribute defines the position and dimension of the SVG viewport.</p>
+					<div data-markdown>
+						<script type="text/template">
+							```html
+							<svg viewBox="0 0 1024 768">
+							```
+						</script>
+					</div>
+					<p>The values it takes are <code class="code">min-x</code>, <code class="code">min-y</code>, <code class="code">width</code>, <code class="code">height</code></p>
+					<p>The coordinate system used for the x- and y-positions is similar to many computer graphics and layout programs. The x-axis goes from the left of the page to the right in increasing value, while the y-axis goes from the top of the page to the bottom. This means that the default zero-point, or origin, of the coordinate system is located at the upper left hand corner of the window.</p>
+					<p>The space is defined in units rather than pixels, so that it can be scaled.</p>
+					<p><a href="https://codepen.io/dbj/pen/RWmQNJ">Check out this animation</a>, and <a href="https://codepen.io/susan8098/pen/jGmoQM">this</a></p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							The <code class="code">`<g>`</code> element is a container element that groups other SVG elements.
+							```html
+							<g class="arrow-top">
+								<line ... />
+								<line ... />
+								<line ... />
+							</g>
+							```
+						</script>
+					</div>
+					<p>Provides a logical structure to the shapes in your graphic</p>
+					<p>Styles applied to the group will be inherited by the children elements within it. </p>
+					<p>However geometric attributes (specific depending on the shape, such as circle radius) are not inherited. </p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							The <code class="code">`<defs>`</code> element is used to store graphical objects that will be reused in a later time.
+							```html
+							<defs>
+								<!-- PATTERN -->
+								<pattern id="moon-gif"> ... </pattern>
+								<!-- BACKGROUND (LINEAR GRADIENT) -->
+								<linearGradient id="background"> ... </linearGradient>
+								<!-- LUNGS (RADIAL GRADIENT) -->
+								<radialGradient id="lung"> ... </radialGradient>
+							</defs>
+							```
+						</script>
+					</div>
+					<p>These graphical elements are never rendered/drawn directly to the browswer.</p>
+					<p>To display them, they have to be assigned with an unique <code class="code">id</code> to be referenced later.</p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							The <code class="code">`<defs>`</code> element can be used like this...
+							```html
+							<!-- BACKGROUND -->
+							<rect ... style="fill: url(#background)"/>
+							```
+						</script>
+					</div>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							The <code class="code">`<use>`</code> element takes nodes from within the SVG document, and duplicates them somewhere else.
+							```html
+							<circle id="myCircle" cx="5" cy="5" r="4"/>
+							<use href="#myCircle" x="10" fill="blue"/>
+							```
+						</script>
+					</div>
+					<p>SVG's approach to avoiding redundant geometry</p>
+					<p>It allows you to re-use graphics that you’ve already defined once in your file, to draw the same geometry in multiple places.</p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							#### Primitive shapes: <code class="code">`<line>`</code>
+							```html
+							<!-- City Hall -->
+							<g id="CityHallL">
+								...
+								<line ... x1="639.801" y1="477.657" x2="639.801" y2="608.082"/>
+								<line ... x1="630.008" y1="470.451" x2="630.008" y2="608.082"/>
+								<line ... x1="620.216" y1="463.245" x2="620.216" y2="608.082"/>
+								<line ... x1="610.424" y1="455.319" x2="610.424" y2="608.082"/>
+								<line ... x1="600.631" y1="446.672" x2="600.631" y2="608.082"/>
+							</g>
+							```
+						</script>
+					</div>
+					<ul>
+						<li><code class="code">line</code> is the simplest shape in the SVG lexicon: a straight segment connecting two points</li>
+						<li><code class="code">x1</code> and <code class="code">y1</code>are the coordinates for the starting point</li>
+						<li><code class="code">x2</code> and <code class="code">y2</code>are the coordinates for the end point</li>
+					</ul>
+					<p></p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							#### Primitive shapes: <code class="code">`<rect>`</code>
+							```html
+							<!-- Background Buildings -->
+							<g id="BuildingB_3">
+								...
+								<rect ... x="443.396" y="455.266" width="64.166" height="152.815"/>
+								<rect ... x="466.192" y="428.671" width="19.419" height="12.664"/>
+							</g>
+							```
+						</script>
+					</div>
+					<ul>
+						<li>Stands for the 'Rectangle' shape.</li>
+						<li><code class="code">x</code> and <code class="code">y</code>are the starting coordinates of the rectangle.</li>
+						<li><code class="code">width</code> and <code class="code">height</code> are the width and height of the rectangle.</li>
+						<li><code class="code">rx</code> and <code class="code">ry</code> is the border radius of the rectangle.</li>
+					</ul>
+					<p></p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							#### Primitive shapes: <code class="code">`<circle>`</code>
+							```html
+							<!-- Moon -->
+							<g id="Moon">
+								<circle ... cx="191.377" cy="133.172" r="32.083"/>
+							</g>
+							```
+						</script>
+					</div>
+					<ul>
+						<li>The 'Circle' shape.</li>
+						<li><code class="code">cx</code> (center-x) and <code class="code">cy</code>(center-y) marks the center point of the circle on the SVG coordinate system.</li>
+						<li><code class="code">r</code> is the radius of the circle.</li>
+					</ul>
+					<p></p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							#### Primitive shapes: <code class="code">`<ellipse>`</code>
+							```html
+							<!-- Moon -->
+							<g id="Moon">
+								<ellipse ... cx="210.796" cy="141.615" rx="4.221" ry="5"/>
+							</g>
+							```
+						</script>
+					</div>
+					<ul>
+						<li>The 'Ellipse' shape.</li>
+						<li><code class="code">cx</code> (center-x) and <code class="code">cy</code>(center-y) marks the center point of the ellipse on the SVG coordinate system.</li>
+						<li><code class="code">rx</code> is the horizontal radius of the ellipse.</li>
+						<li><code class="code">ry</code> is the vertical radius of the ellipse.</li>
+					</ul>
+					<p></p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							#### Custom shapes: <code class="code">`<polyline>`</code>
+							```html
+							<!-- Example of a polyline with the default fill -->
+							<polyline points="0,100 50,25 50,75 100,0" />
+							<!-- Example of the same polyline shape with stroke and no fill -->
+							<polyline points="100,100 150,25 150,75 200,0"
+													fill="none" stroke="black" />
+							```
+						</script>
+					</div>
+					<ul>
+						<li>A basic shape that creates <strong>straight lines</strong> connecting several points</li>
+						<li>Typically used to create <strong>open shapes</strong> as the last point doesn't have to be connected to the first point</li>
+					</ul>
+					<p><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polyline">Reference</a></p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							#### Custom shapes: <code class="code">`<polygon>`</code>
+							```html
+							<!-- Example of a polygon with the default fill -->
+								<polygon points="0,100 50,25 50,75 100,0" />
+							<!-- Example of the same polygon shape with stroke and no fill -->
+							<polygon points="100,100 150,25 150,75 200,0"
+													fill="none" stroke="black" />
+							```
+						</script>
+					</div>
+					<ul>
+						<li>Like <code class="code">polyline</code> but <code class="code">polygon</code> is a <strong>closed</strong> shape consisting of a set of connected straight line segments.</li>
+						<li>the shape is automatically closed from the last point back to the first</li>
+						<li>It's generally best practice to convert <code class="code">polylines</code> and <code class="code">polygones</code> into <code class="code">paths</code></li>
+					</ul>
+					<p><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polyline">Reference</a></p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							#### Custom shapes: <code class="code">`<path>`</code>
+							```html
+							<!-- Clouds -->
+							<g id="Clouds">
+								<path id="Cloud_2" d="M506.445,345.087c0.712-1.616,1.103-3.343,1.103-5.14c0-8.953-9.568-16.211-21.37-16.211
+									c-2.511,0-4.92,0.331-7.158,0.935c-5.561-8.408-17.223-14.199-30.713-14.199c-10.617,0-20.103,3.586-26.373,9.211
+									c-4.588-2.093-10.121-3.316-16.076-3.316c-15.872,0-28.739,8.683-28.739,19.394c0,3.381,1.285,6.559,3.538,9.326H506.445z"/>
+							</g>
+							```
+						</script>
+					</div>
+					<p class="fragment gif"><img src="images/huh.gif" alt="confused monkey"></p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						<script type="text/template">
+							#### Custom shapes: <code class="code">`<path>`</code>
+						</script>
+					</div>
+					<ul>
+						<li>The drawing toolbox of SVG that can define any shape.</li>
+						<li>You can draw rectangles (with or without rounded corners), circles, ellipses, polylines, and polygons.</li>
+						<li>The <code class="code">d</code> attribute holds the path instruction set, which can be thought of as a separate coding language within SVG. It consists of a sequence of points and single letter instructions, that give the directions for drawing the shape.</li>
+						<li>You can draw shapes that have straight or curved sections (or both), open-ended lines and curves, disconnected regions that act as a single shape, and even holes within the filled areas.</li>
+						<li>It is very rare that you will code a complicated <path> from scratch, this is where SVG visual editors come in handy.</li>
+					</ul>
+					<p><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths">More about paths</a></p>
+				</section>
+
+				<section>
+					<h2>Let's take a look at our SVG today!</h2>
+				</section>
+
+				<section id="Tools-and-Optimization" data-background-color="#002844">
+					<h2>Tools & Optimization</h2>
+					<h4><a href="#Agenda">Back to Agenda</a></h4>
+				</section>
+
+				<section>
+					<h4>Free SVG Visual Editors</h4>
+					<p>In-Browser Editors:</p>
+					<ul>
+						<li><a href="https://editor.method.ac/">Method Draw</a> - Simple intuitive shapes editor</li>
+						<li><a href="https://svg-edit.github.io/svgedit/releases/svg-edit-2.8.1/svg-editor.html">SVG Edit</a> - Simple intuitive shapes editor</li>
+						<li><a href="https://vectr.com/">Vectr</a> - has a downloadable version too</li>
+					</ul>
+					<p>Non In-Browser Editor:</p>
+					<ul>
+						<li><a href="https://inkscape.org/">Inkscape</a> - The closest you'll get to vector editing software that's free</li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>Paid Visual Editors</h4>
+					<ul>
+						<li><a href="https://boxy-svg.com/">Boxy SVG</a> - $9.99, great illustrative capabilities, available in-browser as well</li>
+						<li><a href="https://www.sketchapp.com/">Sketch</a> - $99/Year</li>
+						<li><a href="https://www.adobe.com/ca/products/illustrator.html">Adobe Illustrator</a> - Starting at $20.99/Month</li>
+						<li><a href="https://affinity.serif.com/en-gb/designer/">Affinity Designer</a> - $69, Adobe Illustrator Alternative</li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>SVG Optimization Tips:</h4>
+					<ul>
+						<li>First step to optimizing your SVG is <strong>organization</strong>! An organized design file will export an organized SVG code.</li>
+						<li>Structuring your layers/groups and naming your elements accordingly will really ease your work later when you start to animate.</li>
+						<li>Simplifying shapes whenever possible - the less # of points in an SVG, the better.</li>
+						<li>For most software and export options, the size you choose for your artboard defines the coordinate system for the SVG viewBox.</li>
+						<li><a href="https://www.sarasoueidan.com/blog/svg-tips-for-designers/#1">More Tips from Sara Soueidan</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>SVG Optimization Tool:</h4>
+					<ul>
+						<li><a href="https://github.com/svg/svgo">SVGO</a> - Nodejs based tool that you can use via command line to optimize SVG</li>
+						<li><a href="https://jakearchibald.github.io/svgomg/">SVGOMG</a> - Web app version of SVGO if you are not familiar with the command line. </li>
+						<li>You will find that sometimes optimizers will convert shapes into paths.</li>
+					</ul>
+				</section>
+
+				<section id="CSS-with-SVG" data-background-color="#002844">
+					<h2>CSS with SVG</h2>
+					<h4><a href="#Agenda">Back to Agenda</a></h4>
+				</section>
+
+				<section>
+					<h4>There are 4 different ways to apply styles on SVG:</h4>
+					<ul>
+						<li>Presentation Attributes</li>
+						<div data-markdown>
+							<script type="text/template">
+								```html
+								<circle opacity="0.7" cx="191" cy="133" r="32"/>
+								```
+							</script>
+						</div>
+						<li>Inline Styles</li>
+						<div data-markdown>
+							<script type="text/template">
+								```html
+								<circle style="opacity: 0.7;" cx="191" cy="133" r="32"/>
+								```
+							</script>
+						</div>
+						<li>Internal Stylesheets</li>
+						<div data-markdown>
+							<script type='text/template'>
+								```html
+								<svg>
+									<style>
+										circle { opacity: 0.7; }
+									</style>
+									<circle cx="191" cy="133" r="32"/>
+								</svg>
+								```
+							</script>
+						</div>
+						<li>External Stylesheets</li>
+						<div data-markdown>
+							<script type='text/template'>
+								```html
+								<?xml-stylesheet type="text/css" href="styles.css" ?>
+								<svg>
+									<circle cx="191" cy="133" r="32"/>
+								</svg>
+								```
+							</script>
+						</div>
+					</ul>
+				</section>
+
+				<section>
+					<h4>CSS in SVG</h4>
+					<ul>
+						<li>CSS will take priority over a presentation attribute</li>
+						<li>CSS is not required for SVG; it is perfectly possible to define a complete SVG graphic using presentation attributes. But CSS makes it easier.</li>
+						<li><code class="code">z-index</code> is not yet supported on shape elements within SVG - you must change the order that they appear in the SVG file itself to do that</li>
+						<li>There are a few common CSS properties we use that will not work on SVG elements, let's take a look at a few of them...</li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>The <code class="code">fill</code> property:</h4>
+					<ul>
+						<li>Sort of like the <code class="code">background</code> property for HTML element.</li>
+						<li><strong>Fills</strong> the SVG shapes/path with colour, gradients or patterns.</li>
+						<li><strong>Color Values:</strong> can be set with keywords, hex codes #FABDAD, rgb or rgba rgba(250, 189, 173), hsl or hsla hsl(12, 89%, 83%)</li>
+						<li><strong>Gradient and Patterns:</strong> set with a <strong>url() reference</strong> to another element. That other element—the one that describes how to fill in this shape is known as the paint server.</li>
+						<li><code class="code">fill-opacity</code>: controls the opacity of the fill.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>The <code class="code">stroke</code> properties:</h4>
+					<ul>
+						<li>These are like the <code class="code">border</code> properties for HTML element.</li>
+						<li><code class="code">stroke</code>: defines the colour (hex code, rgb, hsl)</li>
+						<li><code class="code">stroke-width</code>: defines the thickness of the stroke</li>
+						<li><code class="code">stroke-opacity</code>: controls the opacity of the stroke</li>
+						<li><code class="code">storke-linecap</code>: specifies the shape at the end of a stroke (butt, round, square)</li>
+						<li><code class="code">stroke-dasharray</code>: controls the pattern of dashes and gaps used to stroke paths</li>
+						<li><code class="code">stroke-dashoffset</code>: specifies the distance into the dash pattern to start the dash</li>
+					</ul>
+				</section>
+
+				<section>
+					<h4><code class="code">transform</code> instead of <code class="code">position</code></h4>
+					<p>The <code class="code">position</code> property which we often use for animation purposes for HTML elements does not work on SVG elements, we have to use <code class="code">transform</code> instead.</p>
+					<div data-markdown>
+						<script type='text/template'>
+								```css
+								@keyframes fall {
+	0%    { top: -80px; }
+	100%  { top: 380px; }
+}
+
+@keyframes SVGfall {
+	0%    { transform: translateY(-80px); }
+	100%  { transform: translateY(380px); }
+}
+								```
+						</script>
+					</div>
+				</section>
+
+				<section>
+					<h4>A few things about <code class="code">transform</code>:</h4>
+					<ul>
+						<li>Transformations can be applied directly to individual shapes or to groups using the SVG <code class="code">transform</code> attribute: <code class="code">transform="scale(4)"</code></li>
+						<li>The CSS <code class="code">transform</code> property came after the SVG <code class="code">transform</code> attribute, and can still be used on SVG elements: <code class="code">style="transform(scale(4))"</code></li>
+						<li>! CSS <code class="code">transform</code> can be implemented inconsistently between browsers</li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>Note on <code class="code">transform-origin</code> property:</h4>
+					<ul>
+						<li><code class="code">transform-origin</code> property has inconsistent rendering with SVG</li>
+						<li>when you set <code class="code">transform-origin: center</code> on SVG elements, the expected behaviour is that it will transform at tha center point of the element, which doesn't always work for SVG elements</li>
+						<li>There are several ways to solve this:</li>
+						<li>Consider using a centered coordinate system by modifying the <code class="code">viewBox</code> instead.</li>
+						<li>Use the <code class="code">transform-box</code> property</li>
+						<li>Or if you are using Greensock animation library, it will take care of it for you!</li>
+					</ul>
+				</section>
+
+				<section id="CSS-Animation" data-background-color="#002844">
+					<h2>CSS Animation</h2>
+					<h4><a href="#Agenda">Back to Agenda</a></h4>
+				</section>
+
+				<section>
+					<h4>The <code class="code">transform</code> property:</h4>
+					<p><code class="code">translate(x,y)</code> <code class="code">scale(x,y)</code> <code class="code">rotate()</code> <code class="code">skew()</code></p>
+					<div data-markdown>
+						<script type='text/template'>
+						<iframe height="365" style="width: 100%;" scrolling="no" title="CSS Transform" src="//codepen.io/susan8098/embed/PLJZEZ/?height=265&theme-id=dark&default-tab=css,result&editable=true" frameborder="no" allowtransparency="true" allowfullscreen="true">
+							See the Pen <a href='https://codepen.io/susan8098/pen/PLJZEZ/'>CSS Transform</a> by Susan Lee
+							(<a href='https://codepen.io/susan8098'>@susan8098</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+						</script>	
+					</div>
+					<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform">MDN CSS Transform</a></p>
+				</section>
+
+				<section>
+					<h4>The <code class="code">transition</code> property:</h4>
+					<p>Transitions enable you to define the transition between two states of an element.</p>
+					<p>The <code class="code">transition</code> property is short hand for: <code class="code">transition-property</code>, <code class="code">transition-duration</code>, <code class="code">transition-timing-function</code>, <code class="code">transition-delay</code>.</p>
+					<div data-markdown>
+						<script type='text/template'>
+						<iframe height="300" style="width: 100%;" scrolling="no" title="bZopRv" src="//codepen.io/susan8098/embed/bZopRv/?height=265&theme-id=dark&default-tab=css,result&editable=true" frameborder="no" allowtransparency="true" allowfullscreen="true">
+							See the Pen <a href='https://codepen.io/susan8098/pen/bZopRv/'>bZopRv</a> by Susan Lee
+							(<a href='https://codepen.io/susan8098'>@susan8098</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+						</script>	
+					</div>
+					<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition">MDN CSS Transition</a></p>
+				</section>
+
+				<section>
+					<h4>The <code class="code">@keyframes</code> CSS at-rule:</h4>
+					<p>controls the intermediate steps in a CSS animation sequence by defining styles for keyframes (or waypoints) along the animation sequence. It gives more control than the <code class="code">transition</code> property.</p>
+					<div data-markdown>
+						<script type='text/template'>
+						<iframe height="350" style="width: 100%;" scrolling="no" title="CSS @Keyframes" src="//codepen.io/susan8098/embed/PLJzYa/?height=265&theme-id=dark&default-tab=css,result&editable=true" frameborder="no" allowtransparency="true" allowfullscreen="true">
+							See the Pen <a href='https://codepen.io/susan8098/pen/PLJzYa/'>CSS @Keyframes</a> by Susan Lee
+							(<a href='https://codepen.io/susan8098'>@susan8098</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+						</script>	
+					</div>
+					<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes">MDN CSS @keyframes</a></p>
+				</section>
+
+				<section>
+					<h4>The <code class="code">animation</code> property:</h4>
+					<p>The <code class="code">@keyframes</code> rule has to be applied with the <code class="code">animation</code> property to take effect. This lets you configure the timing, duration, and other details of how the animation sequence should progress.</p> 
+					<p>The <code class="code">animation</code> properties are: <code class="code">animation-name</code>, <code class="code">animation-duration</code>, <code class="code">animation-timing-function</code>, <code class="code">animation-delay</code>, <code class="code">animation-iteration-count</code>, <code class="code">animation-direction</code>, <code class="code">animation-fill-mode</code>, and <code class="code">animation-play-state</code>.</p>
+					<p>Shorthand can be written like this:</p>
+					<div data-markdown>
+						<script type='text/template'>
+						```css
+						/* @keyframes name | duration | timing-function | delay | 
+						iteration-count | direction | fill-mode | play-state */
+						animation: slidein 3s ease-in 1s 2 reverse both paused;
+
+						/* @keyframes name | duration | timing-function | delay */
+						animation: slidein 3s linear 1s;
+
+						/* @keyframes name | duration */
+						animation: slidein 3s;
+						```
+						</script>	
+					</div>
+				</section>
+
+				<section>
+					<h4>Let's talk about easing...</h4>
+					<p>Objects/movements in real life don't just move in linear motion or at a constant speed, they accelerate and slow down at different points when they move from poitn A to point B.</p>
+					<p>What does <strong>eases</strong> look like? - Check out this <a href="https://easings.net/">Cheatsheet</a></p>
+					<p>With CSS animation, we could use the <code class="code">animation-timing-function</code> to apply the eases.</p>
+					<p>It specifies how a CSS animation should progress over the duration of each cycle. If every animation was linear or a normal ease, they would all look the same, and invoke the same mood.</p>
+				</section>
+
+				<section>
+					<h4><code class="code">animation-timing-function</code>...</h4>
+					<div data-markdown>
+						<script type='text/template'>
+						<iframe height="500" style="width: 100%;" scrolling="no" title="zbEKoW" src="//codepen.io/susan8098/embed/zbEKoW/?height=265&theme-id=dark&default-tab=css,result&editable=true" frameborder="no" allowtransparency="true" allowfullscreen="true">
+							See the Pen <a href='https://codepen.io/susan8098/pen/zbEKoW/'>zbEKoW</a> by Susan Lee
+							(<a href='https://codepen.io/susan8098'>@susan8098</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+						</script>	
+					</div>
+					<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function">MDN animation-timing-function</a></p>
+				</section>
+
+				<section>
+					<h4>The <code class="code">cubic-bezier</code> curve</h4>
+					<p>If we want to apply <strong>custom easings</strong> outside of the default keywords we just covered, we could use <code class="code">cubic-bezier</code> values.</p>
+					<p>We could use <a href="http://cubic-bezier.com">tools like this</a> to help us map out our cubic-bezier curves.</p>
+					<p>We could also use the built-in dev tool:</p>
+					<img src="images/ease-tool.gif" alt="">
+				</section>
+
+				<section id="Exercise-1">
+					<h2>Let's apply some CSS Animation on our illustration!</h2>
+					<ul>
+						<li>Let's open up the <a href="../exercises/1-exercise/">/exercises/1-exercise</a> folder!</li>
+						<li>Open up <a href="../exercises/1-exercise/Toronto_START.svg">Toronto_START.svg</a> working file</li>
+						<li>The SVG is using styles from <a href="../exercises/1-exercise/styles_START.css">styles_START.css</a> stylesheet, which is what we are going to working in to write our CSS animations!</li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>Task 1 - Animate the moon to spin on hover</h4>
+					<div data-markdown>
+						<script type='text/template'>
+						Let's write the keyframes for the spinning effect
+						```css
+						@keyframes spin {
+								50% {
+										transform: rotate(360deg) scale(1.1);
+								}
+								100% {
+										transform: rotate(720deg) scale(1);
+								}
+						}
+						```
+						Applying spin animation on the moon element
+						```css
+						#Moon:hover {
+								animation: spin 1.8s linear infinite;
+						}
+						```
+						</script>	
+					</div>
+				</section>
+
+				<section>
+					<h4>WOW, what's happening here??</h4>
+					<p><img src="images/ex-1.gif" style="width: 500px" alt=""></p>
+					<p>Does <code class="code">transform-origin: 50% 50%</code> work?</p>
+				</section>
+
+				<section>
+					<h4>Remember we talked about how the default <code class="code">transform-origin</code> property in SVG doesn't necessarily behaves the same way as a regular html element does?</h4>
+					<p>We can fix this by applying another css property called <code class="code">transform-box</code>, and supply it with the value of <code class="code">fill-box</code></p>
+					<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-box">transform-box</a> property defines the layout box to which the transform and transform-origin properties relate</p>
+					<p>If the SVG has a viewBox supplied, the default value for SVG element is <code class="code">view-box</code>, which makes the viewBox the reference box. But we want the svg shape itself to be the reference box</p>
+				</section>
+
+				<section>
+					<h4>Much better!</h4>
+					<p><img src="images/ex-2.gif" alt=""></p>
+				</section>
+
+				<section>
+					<h4>Task 2 - Make the main deck of the CN tower into a party room!</h4>
+					<p>Check out the <code class="code">pattern</code> tag in the <code class="code">defs</code></p>
+					<p>We want to switch out the <code class="code">fill</code> property by supplying it the pattern id</p>
+					<div data-markdown>
+						<script type='text/template'>
+						```css
+						#inner_deck:hover {
+								fill: url(#moon-gif);
+								stroke: #B1FDEB;
+								transform: scale(1.2);
+						}
+						```
+						</script>	
+					</div>
+				</section>
+
+				<section>
+					<h4>Task 3 - Animate the Streetcar!</h4>
+					<p>Let's write the keyframes for streetcar motion.</p>
+					<div data-markdown>
+						<script type='text/template'>
+						```css
+						@keyframes streetcar {
+							0% {
+								transform: translate(50vw);
+								opacity: 0;
+							}
+							30% {
+								transform: translate(-10vw);
+								opacity: 1;
+							}
+							70% {
+								transform: translate(-10vw);
+								opacity: 1;
+							}
+							100% {
+								transform: translate(-100vw);
+								opacity: 0;
+							}
+						}
+						#Streetcar {
+							animation: streetcar 6s ease-in-out infinite;
+						}
+						```
+						</script>	
+					</div>
+				</section>
+
+				<section>
+					<p><img src="images/ex-3.gif" style="width: 600px;"></p>
+					<p>Bonus Task: See if you can make the stars shine! 
+					<p>Hint: Check out the <code class="code">Stars-glow</code> group. They are the glowing state of the stars, try hide and show them.</p> 
+				</section>
+
+				<section id="SVG-Line-Animation" data-background-color="#002844">
+					<h2>SVG Line Animation</h2>
+					<h4><a href="#Agenda">Back to Agenda</a></h4>
+				</section>
+
+				<section>
+					<h4>Let's animate this "hello Toronto" handwriting!</h4>
+					<p><img src="images/line-animation.gif" alt="svg line animation gif" style="text-align: left;"></p>
+					<p>For this exercise, we will be using the <a href="https://css-tricks.com/svg-line-animation-works/">SVG Line Animation Technique</a> that utilizes the <code class="code">stroke-dasharray</code> and <code class="code">stroke-dashoffset</code> properties.</p>
+				</section>
+
+				<section>
+					<p><strong>Step 1:</strong> Open up <code class="code">SVG File</code> in the browser, and ppen up the dev tools.</p>
+					<p><img src="images/screenshot1.png" alt="screenshot of step 1"></p>
+					<p>Find and seclect the <strong>Hello</strong> text path element in your dev tools.</p>
+				</section>
+
+				<section>
+					<p><strong>Step 2:</strong> Apply <code class="code">stroke-dasharray</code> on the hello path element.</p>
+					<p><img src="images/screenshot2.gif" alt="screenshot of step 2"></p>
+					<p>Increment and adjust the <code class="code">stroke-dasharray</code> value until the dash length is as long as the path, which makes it look like one continuous stroke covering the entire path.</p>
+				</section>
+
+				<section>
+					<p><strong>Step 3:</strong> Apply <code class="code">stroke-dashoffset</code> and use the same value you used for <code class="code">stroke-dasharray</code> on the hello path element.</p>
+					<p><img src="images/screenshot3.png" alt="screenshot of step 2"></p>
+					<p>This will offset the dasharray, where it moves out of the path instead of it covering the path.</p>
+				</section>
+
+				<section>
+					<p><strong>Step 4:</strong> Write some <code class="code">@keyframes</code> to reset the <code class="code">stroke-dashoffset</code> back to 0.</p>
+					<div data-markdown>
+						<script type='text/template'>
+						```css
+						@keyframes lineAnimation {
+							to {
+								stroke-dashoffset: 0;
+							}
+						}
+						```
+						</script>		
+					</div>
+					<p><strong>Step 5:</strong> Add in the <code class="code">animation</code> rule to the element.</p>
+					<div data-markdown>
+						<script type='text/template'>
+						```css
+						#Hello {
+							stroke-dasharray: 920;
+							stroke-dashoffset: 920;
+							animation: lineAnimation 3s ease .5s forwards;
+						}
+						```
+						</script>		
+					</div>
+				</section>
+
+				<section>
+					<h4>Voilà!</h4>
+					<p><img src="images/screenshot4.gif" alt="screenshot of step 2"></p>
+				</section>
+
+				<section>
+					<h4>Now try animate 'Toronto' using the same technique!</h4>
+					<p>Note: Toronto is made up of 3 different stokes, try playing with easing and delays!</p>
+				</section>
+
+				<section id="Greensock-Animation-Library" data-background-color="#002844">
+					<h2>Greensock Animation Library</h2>
+					<h4><a href="#Agenda">Back to Agenda</a></h4>
+				</section>
+
+				<section>
+					<h4>Intro to Greensock</h4>
+					<p>Greensock is a JavaScript library that gives you more control over your animations than just CSS.</p>
+					<ul>
+						<li>Workflow is faster and eaiser</li>
+						<li>Sequencing animation is a breeze! No more manually calculating delays!</li>
+						<li>Takes care of those little browser inconsistency bugs! e.g <code class="code">transform-origin</code>!</li>
+					</ul>
+					<p>The<a href="https://greensock.com/"> video</a> on their homepage explains it well.</p>
+					<p><a href="https://ihatetomatoes.net/wp-content/uploads/2016/07/GreenSock-Cheatsheet-4.pdf">The greensock cheatsheet!</a></p>
+				</section>
+
+				<section>
+					<h4>Intro to Greensock</h4>
+					<p>Greensock Animation Platform (GSAP) core generally consists of: </p>
+					<ul>
+						<li><a href="https://greensock.com/tweenlite">TweenLite</a> - Fast and lightweright tool that consists basic tweening functions</li> 
+						<li><a href="https://greensock.com/tweenmax">TweenMax</a> - Extends Tweenlite but with more capabilities such as staggering, repeat, yoyo etc</li> 
+						<li><a href="https://greensock.com/timelinelite">TimelineLite</a> - Lightweight timeline class for building and managing sequences of Tweens</li>
+						<li><a href="https://greensock.com/timelinemax">TimelineMax</a> - Extends TimelineLite but with more features</li>
+						<li>There are also lots of <a href="https://greensock.com/docs/Plugins">GSAP plugins</a> other than the core such as <a href="https://greensock.com/drawSVG">DrawSVG</a> and <a href="https://greensock.com/morphSVG">MorphSVG</a></li>
+					</ul>
+					<p><strong>Tween:</strong> short for in-betweening, the process of generating a smooth transition from one image to another</p>
+				</section>
+
+				<section>
+					<h4>Greensock: Basic Tween, with <code class="code">TweenLite</code></h4>
+					<div data-markdown>
+						<script type='text/template'>
+						<iframe height='300' scrolling='no' title='Intro to Greensock: a basic tween' src='http://codepen.io/natacoops/embed/bodepq/?height=265&theme-id=dark&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/natacoops/pen/bodepq/'>Intro to Greensock: a basic tween</a> by Nat Cooper (<a href='https://codepen.io/natacoops'>@natacoops</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+						</script>		
+					</div>
+					<p>The basic syntax: <br> 
+						<code class="code">selector</code>, <code class="code">duration</code>, object of <code class="code">animated properties</code>
+					</p>
+					<p>Also try: <code class="code">.from</code>, <code class="code">.fromTo</code></p>
+				</section>
+
+				<section>
+					<h4>Greensock: Adding Ease</h4>
+					<div data-markdown>
+						<script type='text/template'>
+						<iframe height='300' scrolling='no' title='Intro to Greensock: easing' src='http://codepen.io/natacoops/embed/rGVLRg/?height=265&theme-id=dark&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/natacoops/pen/rGVLRg/'>Intro to Greensock: easing</a> by Nat Cooper (<a href='https://codepen.io/natacoops'>@natacoops</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+						</script>		
+					</div>
+					<p>Try out the <a href="https://greensock.com/ease-visualizer">Ease Visualizer</a></p>
+				</section>
+
+				<section>
+					<h4>Greensock: Using <code class="code">TweenMax</code></h4>
+					<p><code class="code">TweenMax</code> extends <code class="code">TweenLite</code>, adding many useful (but non-essential) features like repeat(), repeatDelay(), yoyo(), updateTo(), staggering and more!</p>
+					<div data-markdown>
+						<script type='text/template'>
+						<iframe height='300' scrolling='no' title='Intro to Greensock: easing' src='http://codepen.io/natacoops/embed/rGVLRg/?height=265&theme-id=dark&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/natacoops/pen/rGVLRg/'>Intro to Greensock: easing</a> by Nat Cooper (<a href='https://codepen.io/natacoops'>@natacoops</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+						</script>		
+					</div>
+				</section>
+
+				<section>
+					<h4>Greensock: Staggering</h4>
+					<div data-markdown>
+						<script type='text/template'>
+						<iframe height='300' scrolling='no' title='Intro to Greensock: staggerTo' src='http://codepen.io/natacoops/embed/ea27218808274c5f01a732b3812eb546/?height=265&theme-id=dark&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/natacoops/pen/ea27218808274c5f01a732b3812eb546/'>Intro to Greensock: staggerTo</a> by Nat Cooper (<a href='https://codepen.io/natacoops'>@natacoops</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+						</script>		
+					</div>
+				</section>
+
+				<section>
+					<h4>Greensock: Sequencing with <code class="code">TimelineLite</code></h4>
+					<p>It creates a <strong>timeline</strong> instance where you can place tweens at any point of the timeline. Making it easy to control when you want tween/animations to happen.</p>
+					<p>Meaning... no more manually calculating delays!</p>
+					<div data-markdown>
+						<script type='text/template'>
+						<iframe height='365' scrolling='no' title='Intro to Greensock: timelineLite' src='http://codepen.io/natacoops/embed/VMLJwN/?height=265&theme-id=dark&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/natacoops/pen/VMLJwN/'>Intro to Greensock: timelineLite</a> by Nat Cooper (<a href='https://codepen.io/natacoops'>@natacoops</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+						</script>		
+					</div>
+				</section>
+
+				<section>
+					<h4>Greensock: Sequencing with <code class="code">TimelineMax</code></h4>
+					<p><code class="code">TimelineMax</code> extends <code class="code">TimelineLite</code>, offering exactly the same functionality plus useful (but non-essential) features like repeat, repeatDelay, yoyo, currentLabel(), tweenTo(), tweenFromTo()</p>
+					<div data-markdown>
+						<script type='text/template'>
+						<iframe height='360' scrolling='no' title='Intro to Greensock: timelineMax' src='http://codepen.io/natacoops/embed/mBJNyW/?height=265&theme-id=dark&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/natacoops/pen/mBJNyW/'>Intro to Greensock: timelineMax</a> by Nat Cooper (<a href='https://codepen.io/natacoops'>@natacoops</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+						</script>		
+					</div>
+				</section>
+
+				<section id="Animated-Illustration">
+					<h3>Ok, we are ready to animate our illustration with greensock!</h3>
+					<p><img src="images/toronto.gif" style="width: 600px" alt=""></p>
+				</section>
+
+				<section>
+					<h4>Open this codepen and fork it to your account!</h4>
+					<div data-markdown>
+						<script type='text/template'>
+						<iframe height="350" style="width: 100%;" scrolling="no" title="Toronto SVG - sans animation" src="//codepen.io/susan8098/embed/drZWKG/?height=265&theme-id=dark&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+							See the Pen <a href='https://codepen.io/susan8098/pen/drZWKG/'>Toronto SVG - sans animation</a> by Susan Lee
+							(<a href='https://codepen.io/susan8098'>@susan8098</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+						</script>		
+					</div>
+				</section>
+
+				<section>
+					<h4>Step 1 - Making sure we are loading in the greensock library</h4>
+					<p><img src="images/tut-1.gif" alt=""></p>
+				</section>
+
+				<section>
+					<h4>Step 2 - Let's start by hiding the streetcar and inverted waves</h4>
+					<p>Uncomment line 95 - 99</p>
+					<p><img src="images/tut-2.gif" alt=""></p>
+				</section>
+
+				<section>
+					<h4>Step 3 - Making a reveal</h4>
+					<p>Like opening up a stage! We have a div element with a class of <code class="code">reveal</code>, we want it to cover up the whole screen. This class is already styled for you, we will just uncomment it.</p>
+					<p>After the class is applied, you should just see a white screen!</p>
+					<p><img src="images/tut-3.gif" alt=""></p>
+				</section>
+
+				<section>
+					<h4>Step 4 - Create a new Timeline instance, and start sequencing!</h4>
+					<p>Make sure we set up a new timeline instance, ready to sequence:</p>
+					<p><code class="code">var tl = new TimelineMax();</code></p>
+					<p>No worries if you are seeing a complete white screen, that's okay we will add a simple tween to remove it!</p>
+					<p>Let's add <code class="code">tl.to('.reveal', 1, {opacity: 0, y: '100%'})</code> to the Javascript.</p>
+				</section>
+
+				<section>
+					<img src="images/tut-4.gif" alt="">
+				</section>
+
+				<section>
+					<h4>Step 5 - Animating the Stars and Moon</h4>
+					<p>We will use the <code class="code">staggerFrom()</code> and <code class="code">from()</code> methods.</p>
+					<div data-markdown>
+						<script type='text/template'>
+						```js
+						.staggerFrom('#Stars polygon', .6, {opacity: 0, rotation: '-80deg', scale: 1.2, y: -10, transformOrigin: '50% 50%'}, .1, '-=0.1')
+						.from('#Moon', .5, {opacity: 0, y: -10}, '-=0.5')
+						```
+						</script>		
+					</div>
+					<p><img src="images/tut-5.gif" style="width: 500px;" alt=""></p>
+				</section>
+
+				<section>
+					<h4>Step 6 - Animating the background buildings and the ground line</h4>
+					<div data-markdown>
+						<script type='text/template'>
+						```js
+						.staggerFrom('.bg-building', 1, {opacity: 0, y: 30, scale: .6, transformOrigin: '50% 50%'}, .1, '-=0.3')
+						.from('#Baseline', 2, {drawSVG: '50% 50%', x:50}, '-=2')
+						```
+						</script>		
+					</div>
+					<p><img src="images/tut-6.gif" style="width: 500px;" alt=""></p>
+				</section>
+
+				<section>
+					<h4>What's <a href="https://greensock.com/drawSVG">DrawSVG</a>?</h4>
+					<ul>
+						<li>A greensock plugin that help us do line animation without manipulating with CSS dash-arrays.</li>
+						<li>You use it by supplying a value to the <code class="code">drawSVG</code>variable</li>
+						<li>The value you supply describes the end state (or begining of the state if using <code class="code">.from</code> method) of where the stroke line is animating to / from.</li>
+						<li>The value can be in <strong>absolute lengths</strong> or <strong>percentages</strong></li>
+						<li>If 2 values are supplied like so <code class="code">drawSVG: 20% 80%</code>, it means the stroke line will cover 20% from the beginning to 20% from the end of the entire stroke length</li>
+						<li>If only 1 value is supplied like <code class="code">drawSVG: 50%</code>, it defaults as <code class="code ">drawSVG: 0 50%</code>, meaning the stroke will cover from starting point to 50% of the stroke length</li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>Step 7 - Let's use DrawSVG to animate the rest of the buildings...</h4>
+					<p>City Hall Buildings - note that we want the bodies of the building to come in before the lines</p>
+					<div data-markdown>
+						<script type='text/template'>
+						```js
+						.from('#OldCityHall .BasicFill', .5, {drawSVG: '0', fill: 'transparent'}, '-=1')
+						.from('.CityHallBody', .3, {drawSVG: '0', fill: 'transparent'}, '-=0.3')
+						.from('#CityHallL .BasicStroke', .5, {drawSVG: '0'}, '-=0.3')
+						.from('#CityHallR .BasicStroke', .5, {drawSVG: '0'}, '-=0.3')
+						```
+						ROM Crystal - We want the polygon shapes to stagger in
+						```js
+						.staggerFrom('#ROM polygon', .5, {drawSVG: '0', fill: 'transparent'}, .1, '-=.3')
+						```
+						Rogers Center 
+						```js
+						.from('#RogersCentre .BasicFill', .5, {drawSVG: '0', fill: 'transparent'}, '-=.5')
+						```
+						</script>		
+					</div>
+				</section>
+
+				<section>
+					<p>CN Tower - Notice that we wanted the needle to come in separately from the rest of the stagger body elements</p>
+					<div data-markdown>
+						<script type='text/template'>
+						```js
+						.from('#needle', .3, {drawSVG: '0'}, '-=.3')
+						.staggerFrom('.cn-tower', 1, {drawSVG: '0', stroke: '#A9FCFA', fill: 'transparent'}, .1)
+						```
+						</script>		
+					</div>
+					<p>You should now have something like this:</p>
+					<p><img src="images/tut-7.gif" style="width: 500px" alt=""></p>
+				</section>
+
+				<section>
+					<h4>Step 8 - Clouds & Waves next!</h4>
+					<p>We want the clouds to appear then move left and right throughout the animation, this is going to utlize the <code class="code">repeat</code> and <code class="code">yoyo</code> properties.</p>
+					<div data-markdown>
+						<script type='text/template'>
+						```js
+						.from('#Clouds', 1, {opacity: 0}, '-=1')
+						.to('#Cloud_1', 4, {x:40, repeat: -1, yoyo: true}, '-=4')
+						.to('#Cloud_2', 4, {x:-40, repeat: -1, yoyo: true}, '-=4')
+						```
+						</script>		
+					</div>
+				</section>
+
+				<section>
+					<h4>We are going to introduce another greensock plugin called <a href="https://greensock.com/morphSVG">MorphSVG</a> for the waves!</h4>
+					<ul>
+						<li>It morphs SVG paths from one to the other by animating / altering the points data inside the <code class="code">"d"</code> atrribute</li>
+						<li>Creates a 'transformative' effect</li>
+						<li>Simply supply the element you'd like your SVG to transfrom into in the <code class="code">morphSVG:</code> property</li>
+						<li>The value you supply can be a <strong>selector string</strong>, <strong>SVG element</strong>, or <strong>paths string value</strong></li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>Waves</h4>
+					<p>We already have a group of wave elements that we want our current waves to transform into, remember that CSS rule we applied in the begining of this exercise on hiding <code class="code">#Waves-I path</code>? </p>
+					<p>These are basically the waves parth inverted. We want to use this to create 'wavy' effect</p>
+					<div data-markdown>
+						<script type='text/template'>
+						```js
+						.from('#Waves', .3, {opacity: 0, y: -10}, '-=1')
+						.to('#wave_1', 1, {morphSVG: '#wave_i_1', x: 20, repeat: -1, yoyo: true}, '-=1')
+						.to('#wave_2', 1, {morphSVG: '#wave_i_2', x: -20, repeat: -1, yoyo: true}, '-=1')
+						.to('#wave_3', 1, {morphSVG: '#wave_i_3', x: 20, repeat: -1, yoyo: true}, '-=1')
+						.to('#wave_4', 1, {morphSVG: '#wave_i_4', x: -20, repeat: -1, yoyo: true}, '-=1')
+						```
+						</script>		
+					</div>
+				</section>
+
+				<section>
+					<h4>Step 9 - Texts</h4>
+					<p>Before we used CSS dash-array to animate the texts, now let's use DrawSVG!</p>
+					<div data-markdown>
+						<script type='text/template'>
+						```js
+						.from('#Hello', 2, {drawSVG: '0'}, '-=0.3')
+						.from('#Toronto_1', .5, {drawSVG: '0'}, '-=0.2')
+						.from('#Toronto_2', 2, {drawSVG: '0'},)
+						.from('#Toronto_3', .5, {drawSVG: '0'},)
+						```
+						</script>		
+					</div>
+					<p><img src="images/tut-8.gif" style="width: 350;" alt=""></p>
+				</section>
+
+				<section>
+					<h4>Step 10 - Reveal the Streetcar</h4>
+					<p>In our previous exercise, we already wrote some keyframes to animate the streetcar. Remembeer we also hid the streetcar in the beginning of this exercise? </p>
+					<p>We will now reveal the streetcar keyframes animation by adding a class, using the <code class="code">className</code> property</p>
+				</section>
+
+				<section>
+					<h4>Yay! We have everything animated!</h4>
+					<p><img src="images/tut-9.gif" alt=""></p>
+				</section>
+
+				<section id="hello">
+					<h4>What you can do next...</h4>
+					<ul>
+						<li>See if you'd like to add some <a href="https://greensock.com/docs/TimelineMax/addLabel()">labels</a> to better organize your tweens</li>
+						<li>Using the <a href="https://greensock.com/ease-visualizer">Ease Visualizer Tool</a>, try to add some easing in your animation to make it more alive!</li>
+						<li>Bonus bonus: Animate the stars to glow! Hint: Check out the <code class="code">#Stars-glow</code> group. They are the 'glow' state of the stars.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>The endless possibilities of SVG!</h2>
+				</section>
+
+				<section id="Resources" data-background-color="#002844">
+					<h2>Resources!</h2>
+					<h4><a href="#Agenda">Back to Agenda</a></h4>
+				</section>
+
+				<section>
+					<h4>Mentioned from the slides...</h4>
+					<ul>
+						<li><a href="https://css-tricks.com/using-svg/">Using SVG</a> Chris Coyier CSS-Tricks</li>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial">SVG Tutorial</a> - MDN</li>
+						<li><a href="https://www.sarasoueidan.com/blog/svg-coordinate-systems/">SVG Coordinate Systems</a> - Sara Soueidan</li>
+						<li><a href="https://www.sarasoueidan.com/blog/svg-tips-for-designers/#1">Tips for Creating + Exporting Better SVG for the Web</a> - Sara Soueidan</li>
+						<li><a href="https://easings.net/">Easings</a> - easing.net</li>
+						<li><a href="http://cubic-bezier.com/">Cubic Bezier</a> - cubic-bezier.com</li>
+						<li><a href="https://css-tricks.com/svg-line-animation-works/">How SVG Line Animation Works</a> - Chris Coyier CSS Tricks</li>
+						<li><a href="https://greensock.com/get-started-js">Getting Started with GSAP</a></li>
+						<li><a href="https://ihatetomatoes.net/g101/">Greensock 101</a> - Peter Tichy</li>
+						<li><a href="https://ihatetomatoes.net/wp-content/uploads/2016/07/GreenSock-Cheatsheet-4.pdf">Greensock Cheatsheet</a></li>
+						<li><a href="https://greensock.com/ease-visualizer">Easing Visualizer</a></li>
+						<li><a href="https://codepen.io/GreenSock/full/OPqpRJ">Try Greensock Plugins for Free on Codepen</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>Extra Reading!</h4>
+					<ul>
+						<li><a href="https://vimeo.com/93206523">12 Basic Principles of Animation - The Illusion of Life</a></li>
+						<li><a href="http://shop.oreilly.com/product/0636920045335.do">SVG Animations</a> - Sarah Drasner</li>
+						<li><a href="https://www.oreilly.com/library/view/using-svg-with/9781491921968/">Using SVG with CSS3 and HTML5</a> - Amelia Bellamy-Royds, Kurt Cagle, Dudley Storey</li>
+						<li><a href="https://abookapart.com/products/practical-svg">Practical SVG</a> - Chris Coyier</li>
+						<li><a href="http://shop.oreilly.com/product/0636920032335.do">SVG Essentials</a> - J. Eisenberg, Amelia Bellamy-Royds</li>
+						<li><a href="https://rosenfeldmedia.com/books/designing-interface-animation/">Designing Interface Animation</a> - Val Head</li>
+					</ul>
+				</section>
+
+				<section data-background-color="#002844">
+					<h2>We are finished! Thank you so much for joining me today!</h2>
+					<h4><a href="#Agenda">Back to Agenda</a></h4>
+				</section>
+				
+				<section id="Bonus-Exercises">
+					<h2>Bonus Exercises</h2>
+					<p>These exercises are created by Nat Cooper, they are available in the <strong>bonus-exercises</strong> folder.</p>
+				</section>
+
+				<section>
+					<h4>Monogram Loading Icon</h4>
+					<p>See if you can recreate this monogram loading icon</p>
+					<p><img src="images/loadingicon01.gif" alt=""></p>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Monogram Loading Icon
+
+						<strong>Step 1:</strong> Choose the letter you want to use from the assets folder
+
+						Copy and paste it inline. Remove the height and width attributes so that it is responsive to the container: `div.loading-icon`
+
+						```html
+						<div class="loading-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+									<path d="M65 ..." fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+							</svg>
+						</div>
+						```
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Monogram Loading Icon
+
+						<strong>Step 2:</strong> Draw the circle outline
+
+						Add a group element after the last path and before to the the closing `</svg>` tag.
+
+						```html
+						<div class="loading-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+									<path d="M65 ..." fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+									<g>
+										
+									</g>
+							</svg>
+						</div>
+						```
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Monogram Loading Icon
+
+						<strong>Step 2:</strong> Draw the circle outline
+
+						Inside the group, draw (code) a `<circle>` with a radius of 60. The default values of `cx` and `cy` are 0 (which is what we need) so you don't need to include them. 
+
+						Give the circle a transparent background and a border width of 2.
+
+						```html
+						<div class="loading-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+									<path d="M65 ..." fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+									<g>
+									<circle r="60" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+									</g>
+							</svg>
+						</div>
+						```
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Monogram Loading Icon
+
+						<strong>Step 2:</strong> Draw the circle outline
+
+						Add a transform attribute to the group and translate it to the center of the viewBox.
+
+						```html
+						<div class="loading-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+								<path d="M65 ..." fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+								<g transform="translate(75 75)">
+								<circle r="60" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+								</g>
+							</svg>
+						</div>
+						```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Monogram Loading Icon
+
+						<strong>Step 3:</strong> Line animation technique
+
+						To create a "line drawing" effect, we'll need to write keyframes for the line animation using `stroke-dasharray` and `stroke-dashoffset`.
+
+						So yeah FYI: strokes can be dashed! 
+
+						Apply the following CSS to your loading icon project to see:
+
+						```css
+						path {
+							stroke-dasharray: 25;
+						}
+						```
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+					#### Monogram Loading Icon
+
+					<strong>Step 3:</strong> Line animation technique
+
+					Now, using the *dev tools*, apply `stroke-dashoffset` to move those dashes incrementally with your arrow keys.
+
+					If you make the dash length the same length as the entire shape, then it's one dash that looks like a <continu>	</continu>stroke. Then we go to animate it, we'll offset that dash the same amount.
+
+					```css
+					path {
+						stroke-dasharray: 250;
+						stroke-dashoffset: 250;
+					}
+					```
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+					#### Monogram Loading Icon
+
+					<strong>Step 3:</strong> Line animation technique
+
+					Write some keyframes for the line-drawing animation.
+
+					```css
+					@keyframes dash {
+						100% {
+							stroke-dashoffset: 0;
+						}
+					}
+					```
+					Add the animation to the letter path
+						
+					```css
+					path {
+						stroke-dasharray: 250;
+						stroke-dashoffset: 250;
+						animation: dash;
+						animation-duration: 2s; 
+						animation-iteration-count: infinite;
+					}
+					```
+					<p class="delayed">Perhaps add some easing: `animation-timing-function: ease-in-out;`</p>
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+					#### Monogram Loading Icon
+
+					<strong>Step 4:</strong> Animate the circle instead of letter
+
+					Instead of animating the letter, let's animate the circle stroke and try something a bit more interesting. Comment out the CSS you've written so far and let's start by calculating the circumferance of the circle.
+
+					`C=2πr` Circumferance = 2 <span>x</span> 3.14 <span>x</span> radius
+
+					Once you have the circumferance, use that as the dash length.
+
+					```css
+					circle {
+						stroke-dasharray: 377; 
+					}
+					```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+					#### Monogram Loading Icon
+
+					<strong>Step 4:</strong> Animate the circle instead of letter
+
+					At the beginning of this animation, we want it to look like the line is drawing in, but it's starting point remains fixed.
+
+					The `stroke-dasharray` can take two values: `(dashLength, gapLength)`. If we keep the length between dashes (the `gapLength`) at least the circumferance of the circle, then we're guaranteed to only see one dash at once regardless of how large it is.
+
+					```css
+					@keyframes circleDash {
+						0% { stroke-dasharray: 0, 377; }
+						100% { stroke-dasharray: 377, 377;}
+					}
+
+					circle {
+						stroke-dasharray: 377; 
+						stroke-dashoffset: 0;
+						animation:  circleDash 2s linear infinite;
+					}
+					```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+					#### Monogram Loading Icon
+
+					<strong>Step 4:</strong> Animate the circle instead of letter
+
+					Now let's animate the `dash-offset` to move that large dash around the circumferance while it grows in.
+
+					```css
+					@keyframes circleDash {
+						0% {
+							stroke-dasharray: 0, 377;
+							stroke-dashoffset: 0;
+						}
+						100% {
+							stroke-dasharray: 377, 377;
+							stroke-dashoffset: -377;
+						}
+					}
+					```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+					#### Monogram Loading Icon
+
+					<strong>Step 4:</strong> Animate the circle instead of letter
+
+					Not bad, but it's starting at the same point every time. 
+
+					Let's add another keyframe animation to rotate the entire circle while the line animation is happening.
+
+					```css
+					@keyframes rotate {
+						100% {
+							transform: rotate(360deg);
+						}
+					}
+					```
+					Add the new animation to the circle. You can add it to the CSS `animation` property and separate animations with a comma.
+
+					```css
+					circle {
+						stroke-dasharray: 377; 
+						stroke-dashoffset: 0;
+						animation:  circleDash 2s linear infinite, rotate 6s linear infinite;
+					}
+					```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<img width="500" class="delayed" src="images/404-page-step19.gif" alt="Step 19">
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Setting up the project</strong>
+
+						* Copy the code from the <a href="https://codepen.io/natacoops/pen/f85ee9c43bc6c1287406e90cbc0dfc44">starter pen</a> and make a new pen of your own with it (cannot fork because it's private)
+						* All that's included is the SVG code and a bit of CSS. Let's also add the JS libraries we need to start - TweenMax and <a href="https://codepen.io/GreenSock/full/OPqpRJ">SplitText</a>.
+						
+						<img width="500" src="images/404-page-setup.gif" alt="CodePen Setup">
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 1: Clear the scene</strong>
+
+						Make a timeline and give the "hide" elements an <span>opacity</span> of 0 using the `.set` method.
+
+						```js
+						tl = new TimelineMax();
+						tl.set(".hide", {opacity: 0}) // set "hide" elements to have an opacity of 0
+						```
+						<img width="500" class="delayed" src="images/404-page-step1.svg" alt="Step 1">
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 2: Animate the entrance of the `<g class="box">`</strong>
+
+						Instead of setting the <span>opacity</span> on this element, <span>scale</span> it down to 0 and then <span>scale</span> it up to 1.
+
+						```js
+						tl = new TimelineMax();
+						tl.set(".hide", {opacity: 0})
+							.set(".box", {scale: 0}) // set it to scale 0 first
+							.to(".box", 2, {scale: 1}) // scale it back to 100% over 2 seconds
+						```
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 2: Animate the entrance of the `<g class="box">`</strong>
+
+						Not exactly what we were going for. It's transforming from the default origin point `(0, 0)`. Let's use `transformOrigin` to ensure that it scales from the center.
+
+						Remember how `transform-origin` in CSS didn't work in some browsers? This mitigates that problem.
+
+						```js
+						tl = new TimelineMax();
+						tl.set(".hide", {opacity: 0})
+							.set(".box", {scale: 0})
+							// make sure it scales in from the center
+							.to(".box", 2, {scale: 1, transformOrigin: "50% 50%"}) 
+						```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 2: Animate the entrance of the `<g class="box">`</strong>
+
+						So close! We need to center it when we initially set it's position too, of course.
+
+						```js
+						tl = new TimelineMax();
+						tl.set(".hide", {opacity: 0})
+							// center it when we set it as well
+							.set(".box", {scale: 0, transformOrigin: "50% 50%"})
+							.to(".box", 2, {scale: 1, transformOrigin: "50% 50%"}) 
+						```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 2: Animate the entrance of the `<g class="box">`</strong>
+
+						Pretty good, but a little boring. Let's add some <a href="https://greensock.com/ease-visualizer" target="_blank">easing</a> to juice it up a bit.
+
+						```js
+						tl = new TimelineMax();
+						tl.set(".hide", {opacity: 0})
+							.set(".box", {scale: 0, transformOrigin: "50% 50%"})
+							// add an interesting ease to the entrance
+							.to(".box", 2, {scale: 1, transformOrigin: "50% 50%", ease: Elastic.easeOut.config(1, 0.5)}) 
+						```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 3: Animate the text</strong>
+
+						Next up, we're going to use the <a href="https://greensock.com/SplitText" target="_blank">Greensock SplitText plugin</a> to animate the text in the design.
+
+						If you read the docs you'll discover that unfortunately, this plugin is not designed to work with SVG `<text>` nodes, so we're going to re-build the text using HTML elements and position them instead.
+
+					</script>
+				</section> 
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						Create a `<div class="container">` and wrap it around the SVG. Next, just inside the opening `<div>` tag, create 2 paragraph tags and an anchor tag and give them classes for later:
+
+						```html
+						<div class="container">
+							<p class="textA">Page Not Found</p>
+							<p class="textB">404</p>
+							<a class="textC" href="#">Go Back</a>
+							...
+						```
+						And add some quick CSS to size and position the container: 
+						```css
+						.container {
+							position: relative;
+							height: 600px;
+							width: 750px;
+							margin: auto;
+						}
+						.container svg {
+							height: 100%;
+						}
+						```
+					</script>
+				</section> 
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 3: Animate the text</strong>
+
+						Style the HTML text to look like the design. In this case, the designer used a font called `Futura`, but feel free to get creative with other fonts or perhaps a different message altogether.
+
+						Once they're styled, position the text absolutely. 
+
+						```css
+						body {
+							font-family: 'Roboto Condensed', sans-serif;
+						}
+						p, a {
+							margin: 0;
+							position: absolute;
+							text-decoration: none;
+							text-transform: uppercase;
+							color: #032C3F;
+							font-size: 24px;
+						}
+						```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 3: Animate the text</strong>
+
+						Take 5 minutes: use the web inspector to determine the exact positioning and sizes of each text element.
+
+						Absolutely positioned text over the SVG will work on this project because our container has an exact height and width. Unfortunately this means in order to be responsive you would need to write adaptive media queries for various screen sizes.
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 3: Animate the text</strong>
+
+						Final CSS:
+
+						```css
+						.textA {
+							top: 169px;
+							left: 257px;
+							transform: rotate(-3deg);
+						}
+						.textB {
+							font-weight: 700;
+							font-size: 135px;
+							top: 209px;
+							left: 273px;
+							transform: rotate(-2deg);
+						}
+						.textC {
+							top: 370px;
+							left: 428px;
+							font-size: 30px;
+							transform: rotate(1deg);
+						}
+						```
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 3: Animate the text</strong>
+
+						Alright, it's time to use the <span>SplitText</span> plugin. Make sure it is included in your CodePen project before we begin.
+
+						Let's create a variable for the 404 text element (we'll animate that first).
+						```js
+						var tl = new TimelineMax(),
+						split404  = new SplitText(".textB", {type:"chars"});
+						split404.split({type:"chars"});
+						```
+						<p class="delayed">In this case, we want to animate each letter - but the plugin does allow for words as well.</p>
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 3: Animate the text</strong>
+
+						Now let's try adding the **SplitText** effect to our timeline using `from` and `to` and effecting the `opacity` of the letters:
+
+						```js
+						tl.set(".hide", {opacity: 0})
+							.set(".box", {scale: 0,  transformOrigin: "50% 50%"})
+							.to(".box", 2, {scale: 1, transformOrigin: "50% 50%", ease: Elastic.easeOut.config(1, 0.5)})
+
+							// add SplitText
+							.from(split404.chars, 1, {opacity: 0}, 0.05)
+							.fo(split404.chars, 1, {opacity: 1}, 0.05)
+						```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 3: Animate the text</strong>
+
+						Not exactly what we want. We're looking to animate each letter individually, so let's use `staggerFrom` and `staggerTo` instead.
+
+						```js
+						tl.set(".hide", {opacity: 0})
+							.set(".box", {scale: 0,  transformOrigin: "50% 50%"})
+							.to(".box", 2, {scale: 1, transformOrigin: "50% 50%", ease: Elastic.easeOut.config(1, 0.5)})
+
+							// add SplitText
+							.staggerFrom(split404.chars, 1, {opacity: 0}, 0.05)
+							.staggerTo(split404.chars, 1, {opacity: 1}, 0.05)
+						```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 3: Animate the text</strong>
+
+						That's better, but perhaps we can animate something in addition to the opacity and add easing to make it more interesting.
+
+						Take ~10 minutes and customize the timing, easing and effects. Do the same for the last two text elements on the page.
+
+						```js
+						.staggerFrom(split404.chars, 1, {opacity: 0, scaleX: 0, ease: Power4.easeOut}, 0.05, "-=1")
+						.staggerTo(split404.chars, 1, {opacity: 1, scaleX: 1, ease: Power4.easeOut}, 0.05, "-=1")
+						```
+						&nbsp;
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 3: Animate the text</strong>
+
+						Here is what your JS should look like so far:
+
+						```js
+						var tl = new TimelineMax(),
+								split404  = new SplitText(".textB", {type:"chars"}),
+								splitPage = new SplitText(".textA", {type:"chars"}),
+								splitBack = new SplitText(".textC", {type:"chars"});
+
+								split404.split({type:"chars"});
+								splitPage.split({type:"chars"});
+								splitBack.split({type:"chars"});
+
+						tl.set(".hide", {opacity: 0})
+							.set(".box", {scale: 0,  transformOrigin: "50% 50%"})
+							.to(".box", 2, {scale: 1, transformOrigin: "50% 50%", ease: Elastic.easeOut.config(1, 0.5)})
+							.staggerFrom(split404.chars, 1, {opacity: 0, scaleX: 0, ease: Power4.easeOut}, 0.05, "-=1")
+							.staggerTo(split404.chars, 1, {opacity: 1, scaleX: 1, ease: Power4.easeOut}, 0.05, "-=1")
+							.staggerFrom(splitPage.chars, 1, {opacity: 0, scaleX: 0, ease: Power4.easeOut}, 0.05, "-=1")
+							.staggerTo(splitPage.chars, 1, {opacity: 1, scaleX: 1, ease: Power4.easeOut}, 0.05, "-=1")
+							.staggerFrom(splitBack.chars, 1, {opacity: 0, scaleX: 0, ease: Power4.easeOut}, 0.05, "-=1.5")
+							.staggerTo(splitBack.chars, 1, {opacity: 1, scaleX: 1, ease: Power4.easeOut}, 0.05, "-=1.5")
+						```
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 4: Animate the big white circle</strong>
+
+						<img width="400" class="delayed" src="images/404-page-step10.gif" alt="Step 10">
+						```js
+						.set(".hide.big-white-circle", {scale: 0,  transformOrigin: "50% 50%"})
+
+						.to(".hide.big-white-circle", 2, {transformOrigin: "50% 50%", scale: 1, opacity: 1, ease: Elastic.easeOut.config(1, 0.3)}, "-=1.45")
+						```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 5: Animate the spinning circles</strong>
+
+						<p>Because this part of the animation is going to repeat on a loop, let's define it in it's own timeline and indicate a repeat value of `-1`</p>
+
+						<img width="400" class="delayed" src="images/404-page-step11.gif" alt="Step 11">
+						```js
+						// create repeating timeline for spinning circles
+						var tlSpin = new TimelineMax({repeat: -1});
+								tlSpin.set('.hide.spin-circles', {rotation: 0})
+								.to('.hide.spin-circles', 3.5, {rotation: 360})
+						```
+						<p class="delayed">What are we missing here?</p>
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 5: Animate the spinning circles</strong>
+
+						<p>Let's ensure it rotates from the center using `transformOrigin` and let's *override* the default easing so the rotating movement is smooth and linear.</p>
+
+						```js
+						// create repeating timeline for spinning circles
+						var tlSpin = new TimelineMax({repeat: -1});
+								tlSpin.set('.hide.spin-circles', { transformOrigin: "50% 50%", rotation: 0, ease:Linear.easeNone})
+											.to('.hide.spin-circles', 3.5, { transformOrigin: "50% 50%", rotation: 360, ease:Linear.easeNone})
+						```
+						<p class="delayed"></p>
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 5: Animate the spinning circles</strong>
+						<p>Once that is done, add the spinning circles to the end of your original timeline and change the `opacity` back to 1.</p>
+
+						```js
+						.to(".hide.spin-circles", 2, {opacity: 1}, "-=1.45")
+						```
+						<p>Alright, our animation is coming together.</p>
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 6: Animate the bottom triangles</strong>
+						<p>Let's fade in the opacity of the triangle dots in the bottom left corner, around the same time as when the spinning circles appear.</p>
+
+						```js
+						.to(".hide.tri-dots", 1, {opacity: 1}, "-=1.5")
+						```
+
+						<p>And perhaps let's tackle something a little more interesting with the other two triangles. Since we're testing just one part of the animation right now, let's add this to the timeline:</p>
+
+						```js
+						.addLabel("jump", "+=1.5")
+						.seek("jump")
+						```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 6: Animate the bottom triangles</strong>
+						
+						To spice it up a bit, let's try rotating-in the last two triangles.
+
+						Set their initial state first:
+						```js
+						.set(".hide.bottom-triangles", {scale: 0, rotation: 720,  transformOrigin: "50% 50%"})
+						```
+						Then add it to the end of the timeline:
+						```js
+						.to(".hide.bottom-triangles", 2, {opacity: 1, scale: 1, rotation: 0}, "-=1.5")
+						```
+						<img width="350" class="delayed" src="images/404-page-step12.gif" alt="Step 12">
+						
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 6: Animate the bottom triangles</strong>
+
+						Wouldn't it be neat if the dark green triangle were nestled in the pink one to start? Let's morph it using the <a href="https://greensock.com/morphSVG">Morph SVG plugin</a>. Add that plugin to your CodePen file and then we're good to go.
+
+						There's a path with a class of `start-tri` in the starter SVG file that was commented out, comment it back in.
+						```html
+						<g class="hide bottom-triangles">
+							<path ... fill="#f62c72"/>
+							<path class="end-tri" fill="#00b3ac" ... "/>
+							<!-- <path class="start-tri" ... /> -->
+						</g>
+						```
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 6: Animate the bottom triangles</strong>
+
+						Then lets add a class of `hide` to the path with a class of `end-tri`
+						
+						```html
+						<g class="hide bottom-triangles">
+							<path ... fill="#f62c72"/>
+							<path class="hide end-tri" fill="#00b3ac" ... "/>
+							<path class="start-tri" ... />
+						</g>
+						```
+						<img width="400" class="delayed" src="images/404-page-step13.gif" alt="Step 13">
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 6: Animate the bottom triangles</strong>
+
+						Using the MorphSVG plugin, we'll change the path `d` values from one path to another. For us that means animating the triangle to go from the starting shape to the end shape.
+
+						```js
+						.to(".start-tri", 1, {morphSVG:".end-tri"}, "-=1.5")
+						```
+
+						<img width="400" class="delayed" src="images/404-page-step14.gif" alt="Step 14">
+						
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 7: Animate the top triangles</strong>
+
+						For the top triangles, let's fade them in and change their `y` value a little bit to have them "float up".
+
+						```js
+						.set(".hide.top-triangles", {opacity: 0, y: 20})
+						.to(".hide.top-triangles", 1, {opacity: 1, y: 0}, "-=1.25")
+						```
+
+						<img width="500" class="delayed" src="images/404-page-step15.gif" alt="Step 15">
+						
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 8: Animate the squiggles</strong>
+
+						Yesterday we used CSS for line animation, but GSAP has a plugin for that too! Include the <a href="https://greensock.com/docs/Plugins/DrawSVGPlugin">DrawSVG</a> plugin in your CodePen and we're all set for the next step.
+
+						Set the squiggles to a length of 0
+						```js
+						.set(".sq-bottom", {drawSVG:0})
+						.set(".sq-top", {drawSVG:0})
+						```
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 8: Animate the squiggles</strong>
+
+						Fade in the `.squiggles` container, and animate each squiggle to 100% of their length
+						```js
+						.to(".hide.squiggles", 1, {opacity: 1, y: 0}, "-=1.25")
+						.to(".sq-bottom", 1, {drawSVG:"100%"}, "-=1")
+						.to(".sq-top", 1, {drawSVG:"100%"}, "-=1")
+						```
+
+						<img width="500" class="delayed" src="images/404-page-step16.gif" alt="Step 16">
+						
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 9: Draw in the diagonal lines on the left</strong>
+
+						Let's stagger the line animations slightly using `staggerFrom`:
+
+						```js
+						.to(".hide.left-lines", 1, {opacity:1}, "-=1.5")
+						.staggerFrom(".left-lines line", 0.75, {drawSVG:0}, 0.1, "-=1")
+						```
+						
+						<img width="500" class="delayed" src="images/404-page-step17.gif" alt="Step 17">
+						
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 10: Fade in the crosshairs</strong>
+
+						Almost there! Let's subtly fade in the crosshairs...
+
+						```js
+						.to(".hide.grow-crosshairs", 1, {opacity:1}, "-=0.75")
+						```
+						
+						<img width="500" class="delayed" src="images/404-page-step18.gif" alt="Step 18">
+						
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 11: Scale in and out the little circles</strong>
+
+						Let's stagger the little circles by separating the even and odd ones. We'll also want to repeat this animation so let's create a timeline for it like we did for the spinning circles.
+
+						Start the even circles at a scale of 30% and the odd circles at 100%... remember to set `transformOrigin`!
+						```js
+						var tlGrow = new TimelineMax({repeat: -1});
+						tlGrow.set('.grow-circles circle:nth-child(even)', { transformOrigin: "50% 50%", scale: 0.3})
+						.set('.grow-circles circle:nth-child(odd)', { transformOrigin: "50% 50%", scale: 1})
+						```
+						
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 11: Scale in and out the little circles</strong>
+
+						Add the scale up / down tweens to the new `tlGrow` timeline
+						```js
+						.to('.grow-circles circle:nth-child(even)', 1, { transformOrigin: "50% 50%", scale: 1, ease:Linear.easeNone})
+						.to('.grow-circles circle:nth-child(odd)', 1, { transformOrigin: "50% 50%", scale: 0.3, ease:Linear.easeNone}, "-=1")
+						.to('.hide.grow-circles circle:nth-child(even)', 1, { transformOrigin: "50% 50%", scale: 0.3, ease:Linear.easeNone})
+						.to('.hide.grow-circles circle:nth-child(odd)', 1, { transformOrigin: "50% 50%", scale: 1, ease:Linear.easeNone}, "-=1")
+						```
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 11: Scale in and out the little circles</strong>
+
+						Then fade in the `.grow-circles` group on the original timeline
+						```js
+						.to(".hide.grow-circles", 1, {opacity:1}, "-=0.5")
+						```
+						<img width="500" class="delayed" src="images/404-page-step19.gif" alt="Step 19">
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						#### Animated 404 Page
+
+						<strong>Step 12: Call attention to the "Go Back" button</strong>
+
+						The last thing we should do is call attention to the back button. Let's make it pink and colour the text to be white.
+
+						It doesn't hurt to add some fancy easing too.
+						```js
+						.to(".back-button", 1, {fill: "#f62c72", transformOrigin: "50% 50%", scale: 1.1, ease: Elastic.easeOut.config(1, 0.2)}, "-=1.5")
+						.to(".textC", 1, {color: "#FFFFFF", scale: 1.1}, "-=1.5")
+						```
+
+					</script>
+				</section>
+
+				<section class="slide" data-markdown>
+					<script type="text/template">
+						<iframe height='600' scrolling='no' title='Page Not Found: Final' src='http://codepen.io/natacoops/embed/b340bd87fca1b3e6a04d533b8ca0d587/?height=265&theme-id=dark&default-tab=result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/natacoops/pen/b340bd87fca1b3e6a04d533b8ca0d587/'>Page Not Found: Final</a> by Nat Cooper (<a href='https://codepen.io/natacoops'>@natacoops</a>) on <a href='https://codepen.io'>CodePen</a>.
+						</iframe>
+
+					</script>
+				</section>
+						
+				<section data-background-color="#002844">
+					<h1>That's ALL!</h1>
+				</section>
+
+		
+				
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				progress: false,
+				history: true,
+				fragmentInURL: true,
+				width: 850,
+				height: 700,
+				transition: 'slide',
+				backgroundTransition: 'slide',
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+slides/.idea/
+*.iml
+*.iws
+*.eml
+slides/out/
+slides/.DS_Store
+slides/.svn
+slides/log/*.log
+slides/tmp/**
+slides/node_modules/
+slides/package-lock.json
+slides/.sass-cache
+slides/css/reveal.min.css
+slides/js/reveal.min.js

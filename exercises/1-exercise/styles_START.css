@@ -1,0 +1,93 @@
+
+/* Basic CSS Styles */
+
+svg * {
+	transform-origin: 50% 50%;
+	transform-box: fill-box;
+	stroke-width: 2;
+ 	stroke-linecap: round;
+ 	stroke-miterlimit: 10;
+}
+
+svg {
+	background: #040e3e;
+}
+
+.BasicStroke {
+ 	stroke: #8BD6D2;
+ 	fill: transparent;
+}
+
+.BasicFill {
+ 	fill: #040e3e;
+ 	stroke: #8BD6D2;
+}
+
+#cn_base_l {
+	fill: #D7F7F5;
+	stroke: #040e3e;
+}
+
+#cn_base_r,
+#lower_deck,
+#upper_deck {
+	fill: #75CAC3;
+	stroke: #040e3e;
+}
+
+#main_deck {
+	fill: #2A6171;
+	stroke: #040e3e;
+}
+
+#inner_deck {
+	fill: #B1FDEB;
+	stroke: #040e3e;
+	transition: all .2s ease;
+}
+
+#needle_base_1,
+#needle_base_2 {
+	fill: #A9FCFA;
+	stroke: #040e3e;
+}
+
+#needle {
+    fill: none;
+    stroke: #A9FCFA;
+    stroke-width: 3;
+}
+
+.streetcar_white {
+ 	fill: #FEFEFE;
+ 	stroke: #040e3e;
+}
+
+.streetcar_window {
+    fill: #1D0444;
+    stroke: #040e3e;
+}
+
+.streetcar_red {
+	fill: #ca1a75;
+    stroke: #040e3e;
+}
+
+#Stars * {
+  stroke: #8BD6D2;
+}
+
+
+/* -------- CSS Animations --------- */
+/* 1. Make the moon spin on hover */
+/* 2. Make the CN tower main deck into a party room on hover, use the supplied <patten> */
+/* 3. Make the streetcar run */
+/* 4. Bonus, make one of the stars glow! */
+
+/* Keyframes */
+
+
+/* Applying Animation */
+
+
+/* Text Line Animation */

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1024" viewBox="0 0 1280 1024">
+  <title>404-page-step1</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <rect width="1280" height="1026" style="fill: #88dcd5"/>
+    <text transform="translate(35 -43.8)" style="font-size: 40px;fill: #fff;font-family: Futura-CondensedMedium, Futura">2) <tspan x="36.6" y="0" style="letter-spacing: -0.0068359375em">w</tspan><tspan x="56.6" y="0">o</tspan><tspan x="72" y="0" style="letter-spacing: 0.005859375em">r</tspan><tspan x="82.9" y="0">ds: split-</tspan><tspan x="186.5" y="0" style="letter-spacing: -0.0009765625em">t</tspan><tspan x="195.3" y="0" style="letter-spacing: -0.0068359375em">e</tspan><tspan x="209.8" y="0">xt anima</tspan><tspan x="322.1" y="0" style="letter-spacing: -0.0009765625em">t</tspan><tspan x="331" y="0">e in</tspan></text>
+  </g>
+  <g id="page-not-found">
+    <g id="box">
+      <g>
+        <polygon id="main-container" points="356.6 327.5 884.3 291.9 885.2 636.7 446.5 700.4 356.6 327.5" style="fill: #fff"/>
+        <path d="M437.3,713.9,341.5,316.4l554.9-37.4,1,368.2ZM371.7,338.6l84,348.3,417.4-60.6-.9-321.4Z" style="fill: #032c3f"/>
+      </g>
+      <polygon points="387.4 284.6 757.2 257.7 727.7 335.5 424.2 349.7 387.4 284.6" style="fill: #ffe029"/>
+      <polygon points="704.5 623.7 930.2 623.9 957.6 664.8 928.4 702.4 703.5 701.6 704.5 623.7" style="fill: #ffe029"/>
+    </g>
+  </g>
+</svg>
