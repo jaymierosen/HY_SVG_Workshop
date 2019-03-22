@@ -3,10 +3,10 @@
 
 svg * {
 	transform-origin: 50% 50%;
-	transform-box: fill-box;
 	stroke-width: 2;
  	stroke-linecap: round;
  	stroke-miterlimit: 10;
+	/*transform-box: fill-box;*/
 }
 
 svg {
@@ -76,7 +76,6 @@ svg {
 #Stars * {
   stroke: #8BD6D2;
 }
-
 
 /* -------- CSS Animations --------- */
 /* 1. Make the moon spin on hover */

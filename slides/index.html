@@ -38,8 +38,9 @@
 					<h4><strong>Wifi:</strong> Hacker You | <strong>Password:</strong> Thisishackeryou</h4>
 					<h4>Download the files: <a href="https://github.com/HackerYou/SVG-workshop">https://github.com/susan8098/SVG_Workshop</a></h4>
 					<h4>Make sure you have a <a href="https://codepen.io">Codepen Account</a></h4>
+					<h4>Join the Slack Channel <strong>#2019-spring-svgws</strong></h4>
 					<p>Text Editor I am using: <strong>Sublime Text</strong></p>
-					<p>Web Browse we will be using: <strong>Google Chrome</strong></p>
+					<p>Web Browser we will be using: <strong>Google Chrome</strong></p>
 				</section>
 
 				<section>
@@ -49,7 +50,7 @@
 					<p><a href="https://codepen.io/susan8098">Codepen</a></p>
 					<p><a href="https://hellosusan.io">https://hellosusan.io</a></p>
 					<p><a href="https://www.instagram.com/our.charlie/">Very cute pics of my dog!</a></p>
-					<p style="font-size: 16px; margin-top: 40px;">Note: Much of the materials that I am presenting today are taken from the previous instructor of this workshop <a href="http://natcooper.com/">Nat Cooper</a>. Nat is a super talented designer, and has been working on SVG animations for years now. Check out her fun SVG animations on her <a href="https://codepen.io/natacoops/">Codepen</a>. She is also the creator of the <a href="http://creativecoding.club">Creative Coding Club</a>!</p>
+					<p style="font-size: 16px; margin-top: 40px;">Note: Much of the materials that I am presenting today are taken from the previous instructor of this workshop <a href="http://natcooper.com/">Nat Cooper</a>. Nat is a super talented designer, and has been working on SVG animations for years now. Check out her fun SVG animations on her <a href="https://codepen.io/natacoops/">Codepen</a>. She is also the creator of the <a href="https://codepen.io/collection/DdpeKy/">Creative Coding Club</a>!</p>
 				</section>
 
 				<section>
@@ -204,8 +205,14 @@
 					</div>
 					<p>It generally corresponds to the values in <code class="code">viewBox</code> attribute</p>
 				</section>
+				
+				<section>
+					<img src="images/svg-coordinates.png" alt="SVG coodrinate system">
+				</section>
 
 				<section>
+					<p>The coordinate system used for the x- and y-positions is similar to many computer graphics and layout programs. The x-axis goes from the left of the page to the right in increasing value, while the y-axis goes from the top of the page to the bottom. This means that the default zero-point, or origin, of the coordinate system is located at the upper left hand corner of the window.</p>
+					<p>The space is defined in units rather than pixels, so that it can be scaled.</p>
 					<p>The <code class="code">viewBox</code> attribute defines the position and dimension of the SVG viewport.</p>
 					<div data-markdown>
 						<script type="text/template">
@@ -215,8 +222,6 @@
 						</script>
 					</div>
 					<p>The values it takes are <code class="code">min-x</code>, <code class="code">min-y</code>, <code class="code">width</code>, <code class="code">height</code></p>
-					<p>The coordinate system used for the x- and y-positions is similar to many computer graphics and layout programs. The x-axis goes from the left of the page to the right in increasing value, while the y-axis goes from the top of the page to the bottom. This means that the default zero-point, or origin, of the coordinate system is located at the upper left hand corner of the window.</p>
-					<p>The space is defined in units rather than pixels, so that it can be scaled.</p>
 					<p><a href="https://codepen.io/dbj/pen/RWmQNJ">Check out this animation</a>, and <a href="https://codepen.io/susan8098/pen/jGmoQM">this</a></p>
 				</section>
 
@@ -409,7 +414,6 @@
 					<ul>
 						<li>Like <code class="code">polyline</code> but <code class="code">polygon</code> is a <strong>closed</strong> shape consisting of a set of connected straight line segments.</li>
 						<li>the shape is automatically closed from the last point back to the first</li>
-						<li>It's generally best practice to convert <code class="code">polylines</code> and <code class="code">polygones</code> into <code class="code">paths</code></li>
 					</ul>
 					<p><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polyline">Reference</a></p>
 				</section>
@@ -457,7 +461,7 @@
 							* The <code class="code">`<filter>`</code> element contains a set of filter primitives as its children. 
 							* Each filter primitive performs a single fundamental graphical operation on one or more inputs, producing a graphical result.
 							* Checkout <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter">MDN Reference</a> and this <a href="https://tympanus.net/codrops/2019/01/15/svg-filters-101/">SVG Filters 101</a> on more of how it works
-							* Sara Soueidan explains it amazingly well: <a href="https://www.sarasoueidan.com/blog/svg-filters/"> Crash Course on SVG Filters</a>
+							* Sara Soueidan explains it amazingly well: <a href="https://www.sarasoueidan.com/blog/svg-filters/"> Crash Course on SVG Filters</a>, <a href="https://www.youtube.com/watch?v=iYChMKXkGis&t=794s"> SVG Filters: Mini Crash Course</a>
 							* Examples of SVG Filters: <a href="https://tympanus.net/Development/SVGImageHover/">Image Hovers</a>, <a href="https://codepen.io/damienmontastier/full/ZwjePv">Loader</a>
 						</script>
 					</div>
@@ -524,7 +528,7 @@
 				<section>
 					<h4>There are 4 different ways to apply styles on SVG:</h4>
 					<ul>
-						<li>Presentation Attributes</li>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/Presentation">Presentation Attributes</a></li>
 						<div data-markdown>
 							<script type="text/template">
 								```html
@@ -596,7 +600,7 @@
 						<li><code class="code">stroke-width</code>: defines the thickness of the stroke</li>
 						<li><code class="code">stroke-opacity</code>: controls the opacity of the stroke</li>
 						<li><code class="code">storke-linecap</code>: specifies the shape at the end of a stroke (butt, round, square)</li>
-						<li><code class="code">stroke-dasharray</code>: controls the pattern of dashes and gaps used to stroke paths</li>
+						<li><code class="code">stroke-dasharray</code>: controls the pattern of dashes and gaps used to stroke paths <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray">(reference)</a></li>
 						<li><code class="code">stroke-dashoffset</code>: specifies the distance into the dash pattern to start the dash</li>
 					</ul>
 				</section>
@@ -714,7 +718,7 @@
 
 				<section>
 					<h4>Let's talk about easing...</h4>
-					<p>Objects/movements in real life don't just move in linear motion or at a constant speed, they accelerate and slow down at different points when they move from poitn A to point B.</p>
+					<p>Objects/movements in real life don't just move in linear motion or at a constant speed, they accelerate and slow down at different points when they move from point A to point B.</p>
 					<p>What does <strong>eases</strong> look like? - Check out this <a href="https://easings.net/">Cheatsheet</a></p>
 					<p>With CSS animation, we could use the <code class="code">animation-timing-function</code> to apply the eases.</p>
 					<p>It specifies how a CSS animation should progress over the duration of each cycle. If every animation was linear or a normal ease, they would all look the same, and invoke the same mood.</p>
@@ -860,7 +864,7 @@
 				</section>
 
 				<section>
-					<p><strong>Step 1:</strong> Open up <code class="code">SVG File</code> in the browser, and ppen up the dev tools.</p>
+					<p><strong>Step 1:</strong> Open up <code class="code">SVG File</code> in the browser, and open up the dev tools.</p>
 					<p><img src="images/screenshot1.png" alt="screenshot of step 1"></p>
 					<p>Find and seclect the <strong>Hello</strong> text path element in your dev tools.</p>
 				</section>
