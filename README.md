@@ -1,6 +1,6 @@
-# SVG Animations Workshop 
+# SVG Animation Workshop 
 
-SVG Animations Workshop slides, notes and exercises. This is a 1-Day workshop delivered at HackerYou. 
+SVG Animation Workshop slides, notes and exercises. This is a 1-Day workshop delivered at HackerYou. 
 
 ## Slides
 Slides are available for viewing at `slides/index.html`
