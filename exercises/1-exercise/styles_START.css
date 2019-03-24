@@ -1,12 +1,12 @@
-
 /* Basic CSS Styles */
 
 svg * {
 	transform-origin: 50% 50%;
 	stroke-width: 2;
- 	stroke-linecap: round;
- 	stroke-miterlimit: 10;
-	/*transform-box: fill-box;*/
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+	/* box relative to the element */
+	transform-box: fill-box;
 }
 
 svg {
@@ -14,13 +14,13 @@ svg {
 }
 
 .BasicStroke {
- 	stroke: #8BD6D2;
- 	fill: transparent;
+	stroke: #8BD6D2;
+	fill: transparent;
 }
 
 .BasicFill {
- 	fill: #040e3e;
- 	stroke: #8BD6D2;
+	fill: #040e3e;
+	stroke: #8BD6D2;
 }
 
 #cn_base_l {
@@ -53,28 +53,32 @@ svg {
 }
 
 #needle {
-    fill: none;
-    stroke: #A9FCFA;
-    stroke-width: 3;
+	fill: none;
+	stroke: #A9FCFA;
+	stroke-width: 3;
 }
 
 .streetcar_white {
- 	fill: #FEFEFE;
- 	stroke: #040e3e;
+	fill: #FEFEFE;
+	stroke: #040e3e;
 }
 
 .streetcar_window {
-    fill: #1D0444;
-    stroke: #040e3e;
+	fill: #1D0444;
+	stroke: #040e3e;
 }
 
 .streetcar_red {
 	fill: #ca1a75;
-    stroke: #040e3e;
+	stroke: #040e3e;
 }
 
 #Stars * {
-  stroke: #8BD6D2;
+	stroke: #8BD6D2;
+}
+
+#Moon:hover {
+	animation: spin 3s linear infinite;
 }
 
 /* -------- CSS Animations --------- */
@@ -84,9 +88,122 @@ svg {
 /* 4. Bonus, make one of the stars glow! */
 
 /* Keyframes */
+@keyframes spin {
+	50% {
+		transform: rotate(360deg) scale(1.1);
+	}
 
+	100% {
+		transform: rotate(720deg) scale(1);
+	}
+}
+
+@keyframes streetcar {
+	0% {
+		transform: translateX(50vw);
+		opacity: 0;
+	}
+
+	20% {
+		transform: translateX(-10vw);
+		opacity: 1;
+	}
+
+	60% {
+		transform: translateX(-10vw);
+		opacity: 1;
+	}
+
+	100% {
+		transform: translateX(-100vw);
+		opacity: 0;
+	}
+}
+
+@keyframes lineAnimation {
+	0% {
+		stroke-dashoffset: 926;
+	}
+
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+@keyframes toronto1 {
+	0% {
+		stroke-dashoffset: 229;
+	}
+
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+@keyframes toronto2 {
+	0% {
+		stroke-dashoffset: 860;
+	}
+
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+@keyframes toronto3 {
+	0% {
+		stroke-dashoffset: 102;
+	}
+
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
 
 /* Applying Animation */
+#inner_deck:hover {
+	fill: url(#moon-gif);
+	transform: scale(1.2);
+	stroke: #b1fdbb;
+}
 
+#Streetcar {
+	animation: streetcar 2s linear infinite;
+}
 
 /* Text Line Animation */
+#Hello {
+	stroke-dashoffset: 926;
+	/* starting point */
+	stroke-dasharray: 926;
+	/* end point */
+	animation: lineAnimation 3s ease .5s forwards;
+	/* forwards- ends at ending point */
+}
+
+#Toronto_1 {
+	stroke-dashoffset: 229;
+	/* starting point */
+	stroke-dasharray: 229;
+	/* end point */
+	animation: toronto1 3s ease 5s forwards;
+	/* forwards- ends at ending point */
+}
+
+#Toronto_2 {
+	stroke-dashoffset: 860;
+	/* starting point */
+	stroke-dasharray: 860;
+	/* end point */
+	animation: toronto2 3s ease 3s forwards;
+	/* forwards- ends at ending point */
+}
+
+#Toronto_3 {
+	stroke-dashoffset: 102;
+	/* starting point */
+	stroke-dasharray: 102;
+	/* end point */
+	animation: toronto3 3s ease 5s forwards;
+	/* forwards- ends at ending point */
+}
